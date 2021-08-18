@@ -1,4 +1,7 @@
 # List operation, O(n^2)
+from collections import defaultdict
+
+
 def singleNumber(self, nums):
     no_duplicate_list = []
     for num in nums:
@@ -7,6 +10,7 @@ def singleNumber(self, nums):
         else:
             no_duplicate_list.remove(num)
     return no_duplicate_list.pop()
+
 
 # Hash table, O(n)
 def singleNumber2(self, nums):
@@ -18,12 +22,14 @@ def singleNumber2(self, nums):
         if hash_table[i] == 1:
             return i
 
+
 # Math, O(n)
 def singleNumber3(self, nums):
     return 2 * sum(set(nums)) - sum(nums)
 
+
 # Bid Manipulation
-def singleNumber(self, nums):
+def singleNumber4(self, nums):
     a = 0
     for num in nums:
         a ^= num

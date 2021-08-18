@@ -1,4 +1,7 @@
 # Two Pointers
+from typing import List
+
+
 def removeDuplicates(self, nums: List[int]) -> int:
     new_tail = 0
     for i in range(len(nums)):
