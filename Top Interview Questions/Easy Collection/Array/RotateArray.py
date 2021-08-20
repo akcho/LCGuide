@@ -1,7 +1,7 @@
 # Brute Force
 def rotate(self, nums, k):
     k %= len(nums)
-    for i in k:
+    for i in range(k):
         prev = nums[-1]
         for j in range(len(nums)):
             nums[j], prev = prev, nums[j]
