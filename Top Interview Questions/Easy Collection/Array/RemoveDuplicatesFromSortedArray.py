@@ -1,11 +1,15 @@
 # Two Pointers
+# Time Complexity: O(n)
+# Space Complexity: O(1)
 from typing import List
 
 
 def removeDuplicates(self, nums: List[int]) -> int:
-    new_tail = 0
-    for i in range(len(nums)):
-        if nums[i] != nums[new_tail]:
-            new_tail += 1
-            nums[new_tail] = nums[i]
-        return new_tail + 1
+    if len(nums) == 0:
+        return 0
+    slow_runner = 0
+    for fast_runner in range(len(nums)):
+        if nums[fast_runner] != nums[slow_runner]:
+            slow_runner += 1
+            nums[slow_runner] = nums[fast_runner]
+    return slow_runner + 1
