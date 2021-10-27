@@ -1,5 +1,7 @@
 # Time: O(n)
 # Space: O(1)
+from typing import List
+
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
@@ -7,7 +9,7 @@ class Solution:
         l = 0
         r = len(height) - 1
 
-        while (l < r):
+        while l < r:
             max_area = max(max_area, min(height[l], height[r]) * (r - l))
             if height[l] < height[r]:
                 l += 1
