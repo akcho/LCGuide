@@ -3,27 +3,24 @@
 # space: O(n)
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
-        if not root:
-            return []
+        stack, output = [], []
+        left_node = root
 
-        stack, res = [], []
-        curr = root
+        while stack or left_node:
+            while left_node:
+                stack.append(left_node)
+                left_node = left_node.left
 
-        while curr or stack:
-            if curr:
-                stack.append(curr)
-                curr = curr.left
+            right_node = stack[-1].right
+            if right_node:
+                left_node = right_node
             else:
-                node = stack[-1].right
-                if not node:
+                node = stack.pop()
+                output.append(node.val)
+                while stack and stack[-1].right == node:
                     node = stack.pop()
-                    res.append(node.val)
-                    while stack and stack[-1].right == node:
-                        node = stack.pop()
-                        res.append(node.val)
-                else:
-                    curr = node
-        return res
+                    output.append(node.val)
+        return output
 
 # recursive
 # time: O(n)

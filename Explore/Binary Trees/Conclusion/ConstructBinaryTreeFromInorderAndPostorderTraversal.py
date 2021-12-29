@@ -2,6 +2,8 @@
 # space: O(n) >- store the entire tree
 class Solution:
     def buildTree(self, inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
+        idx_map = {val: idx for idx, val in enumerate(inorder)}
+
         def helper(in_left, in_right):
             if in_left > in_right:
                 return None
@@ -16,6 +18,4 @@ class Solution:
 
             return root
 
-        idx_map = {val: idx for idx, val in enumerate(inorder)}
-        print(idx_map)
         return helper(0, len(inorder) - 1)
