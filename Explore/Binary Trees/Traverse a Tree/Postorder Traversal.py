@@ -4,6 +4,7 @@
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         stack, output = [], []
+
         left_node = root
 
         while stack or left_node:
@@ -11,15 +12,14 @@ class Solution:
                 stack.append(left_node)
                 left_node = left_node.left
 
-            right_node = stack[-1].right
-            if right_node:
-                left_node = right_node
+            if stack[-1].right:
+                left_node = stack[-1].right
             else:
-                node = stack.pop()
-                output.append(node.val)
-                while stack and stack[-1].right == node:
-                    node = stack.pop()
-                    output.append(node.val)
+                root = stack.pop()
+                output.append(root.val)
+                while stack and stack[-1].right == root:
+                    root = stack.pop()
+                    output.append(root.val)
         return output
 
 # recursive
