@@ -3,20 +3,20 @@
 # space: O(n)
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
-        levels = []
         if not root:
-            return levels
+            return []
 
-        def helper(node, level):
+        levels = []
+
+        def helper(root, level):
             if len(levels) == level:
                 levels.append([])
+            levels[level].append(root.val)
 
-            levels[level].append(node.val)
-
-            if node.left:
-                helper(node.left, level + 1)
-            if node.right:
-                helper(node.right, level + 1)
+            if root.left:
+                helper(root.left, level + 1)
+            if root.right:
+                helper(root.right, level + 1)
 
         helper(root, 0)
         return levels
