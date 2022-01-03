@@ -15,11 +15,11 @@ class Solution:
             if stack[-1].right:
                 left_node = stack[-1].right
             else:
-                root = stack.pop()
-                output.append(root.val)
-                while stack and stack[-1].right == root:
-                    root = stack.pop()
-                    output.append(root.val)
+                curr = stack.pop()
+                output.append(curr.val)
+                while stack and stack[-1].right == curr:  # next stack node considers curr its right node
+                    curr = stack.pop()
+                    output.append(curr.val)
         return output
 
 # recursive
