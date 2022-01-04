@@ -30,21 +30,20 @@ class Solution2:
         if not root:
             return []
 
-        output = []
+        levels = []
         level = 0
         queue = deque([root])
         while queue:
-            output.append([])
-            level_length = len(queue)
+            levels.append([])
 
-            for i in range(level_length):
-                node = queue.popleft()
-                output[level].append(node.val)
+            for _ in range(len(queue)):
+                root = queue.popleft()
+                levels[level].append(root.val)
 
-                if node.left:
-                    queue.append(node.left)
+                if root.left:
+                    queue.append(root.left)
                 if node.right:
-                    queue.append(node.right)
+                    queue.append(root.right)
 
             level += 1
-        return output
+        return levels
