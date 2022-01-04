@@ -4,14 +4,13 @@
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         stack = []
-
-        if root is not None:
+        if root:
             stack.append((1, root))
 
         depth = 0
         while stack:
             curr_depth, root = stack.pop()
-            if root is not None:
+            if root:
                 depth = max(depth, curr_depth)
                 stack.append((curr_depth + 1, root.left))
                 stack.append((curr_depth + 1, root.right))
