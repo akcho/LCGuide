@@ -1,7 +1,6 @@
 # Approach 1: Recursion
 # time: O(n)
 # space: O(log(n))
-
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if not root:
@@ -19,22 +18,18 @@ class Solution:
 # time: O(n)
 # space (O(log(n))
 class Solution:
-    def hasPathSum(self, root, sum):
-        """
-        :type root: TreeNode
-        :type sum: int
-        :rtype: bool
-        """
+    def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if not root:
             return False
 
-        de = [(root, sum - root.val), ]
-        while de:
-            node, curr_sum = de.pop()
-            if not node.left and not node.right and curr_sum == 0:
+        stack = [(root, targetSum - root.val)]
+
+        while stack:
+            node, targetSum = stack.pop()
+            if not node.right and not node.left and targetSum == 0:
                 return True
             if node.right:
-                de.append((node.right, curr_sum - node.right.val))
+                stack.append((node.right, targetSum - node.right.val))
             if node.left:
-                de.append((node.left, curr_sum - node.left.val))
+                stack.append((node.left, targetSum - node.left.val))
         return False
