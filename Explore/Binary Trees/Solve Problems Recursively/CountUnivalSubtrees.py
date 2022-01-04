@@ -2,20 +2,28 @@
 # space: O(H)
 class Solution:
     def countUnivalSubtrees(self, root: Optional[TreeNode]) -> int:
-        if root is None:
+        if not root:
             return 0
         self.count = 0
-        self.is_uni(root)
+        self.isUni(root)
         return self.count
 
-    def is_uni(self, node):
-        if node.left is None and node.right is None:
+    def isUni(self, node):
+        if not node.left and not node.right:
             self.count += 1
             return True
-        is_uni = True
-        if node.left is not None:
-            is_uni = self.is_uni(node.left) and is_uni and node.left.val == node.val
-        if node.right is not None:
-            is_uni = self.is_uni(node.right) and is_uni and node.right.val == node.val
-        self.count += is_uni
+
+        is_uni_left = True
+        is_uni_right = True
+        if node.left:
+            is_uni_left = self.isUni(node.left) and node.left.val == node.val
+        if node.right:
+            is_uni_right = self.isUni(node.right) and node.right.val == node.val
+
+        is_uni = is_uni_left and is_uni_right
+
+        if is_uni:
+            self.count += 1
+
         return is_uni
+
