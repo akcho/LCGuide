@@ -44,6 +44,6 @@ class Solution:
         if root is None:
             return 0
         else:
-            left_height = self.maxDepth(root.left)
-            right_height = self.maxDepth(root.right)
-            return max(left_height, right_height) + 1
+            left = self.maxDepth(root.left)
+            right = self.maxDepth(root.right)
+            return max(left, right) + 1
