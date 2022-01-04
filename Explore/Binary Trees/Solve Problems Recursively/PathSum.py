@@ -28,6 +28,8 @@ class Solution:
             node, targetSum = stack.pop()
             if not node.right and not node.left and targetSum == 0:
                 return True
+
+            # node.right doesn't need to come before node.left
             if node.right:
                 stack.append((node.right, targetSum - node.right.val))
             if node.left:
