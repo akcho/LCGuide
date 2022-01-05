@@ -4,19 +4,21 @@
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
         idx_map = {val: idx for idx, val in enumerate(inorder)}
-        preorder_idx = 0
+        pre_idx = 0
 
-        def helper(inorder_left, inorder_right):
-            if inorder_left > inorder_right:
+        def helper(left, right):
+            if left > right:
                 return None
 
-            nonlocal preorder_idx
-            val = preorder[preorder_idx]
-            root = TreeNode(val)
-            preorder_idx += 1
+            nonlocal pre_idx
+            val = preorder[pre_idx]
+            pre_idx += 1
 
-            root.left = helper(inorder_left, idx_map[val] - 1)
-            root.right = helper(idx_map[val] + 1, inorder_right)
+            root = TreeNode(val)
+            root_idx = idx_map[val]
+
+            root.left = helper(left, root_idx - 1)
+            root.right = helper(root_idx + 1, right)
 
             return root
 
