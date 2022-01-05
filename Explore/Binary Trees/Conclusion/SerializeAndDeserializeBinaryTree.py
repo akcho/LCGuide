@@ -4,13 +4,13 @@
 class Codec:
 
     def serialize(self, root):
-        res = []
+        output = []
 
         def dfs(root):
             if not root:
-                res.append("None,")
+                output.append("None,")
                 return
-            res.append(str(root.val) + ",")
+            output.append(str(root.val) + ",")
             dfs(root.left)
             dfs(root.right)
 
