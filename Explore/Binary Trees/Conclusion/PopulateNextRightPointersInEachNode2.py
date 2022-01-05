@@ -37,7 +37,7 @@ class Solution:
             if childNode:
                 if not prev:  # first child in level
                     leftmost = childNode
-                else:  # we've already found a left child node
+                else:  # already found a left child via this func
                     prev.next = childNode
                 prev = childNode
             return prev, leftmost
