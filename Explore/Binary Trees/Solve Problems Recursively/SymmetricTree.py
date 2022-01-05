@@ -16,20 +16,27 @@ class Solution:
 # time: O(n)
 # space: O(n)
 class Solution:
-    def isSymmetric(self, root):
+    def isSymmetric(self, root: Optional[TreeNode]) -> bool:
         if not root:
             return True
 
-        q = collections.deque([root.left, root.right])
+        q = deque()
+        q.append(root.left)
+        q.append(root.right)
 
         while q:
-            t1, t2 = q.popleft(), q.popleft()
+            t1 = q.popleft()
+            t2 = q.popleft()
 
             if not t1 and not t2:
                 continue
-            elif (not t1 or not t2) or (t1.val != t2.val):
+            if not t1 or not t2:
+                return False
+            if t1.val != t2.val:
                 return False
 
-            q += [t1.left, t2.right, t1.right, t2.left]
-
+            q.append(t1.left)
+            q.append(t2.right)
+            q.append(t1.right)
+            q.append(t2.left)
         return True
