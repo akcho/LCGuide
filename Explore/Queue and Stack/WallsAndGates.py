@@ -20,9 +20,9 @@ class Solution:
 
         while len(q) != 0:
             # pop gate coords off
-            point = q.popleft()
-            row = point[0]  # 1 is north, -1 is south
-            col = point[1]  # 1 is east, -1 is west
+            coord = q.popleft()
+            row = coord[0]  # 1 is north, -1 is south
+            col = coord[1]  # 1 is east, -1 is west
             for direction in DIRECTIONS:
                 r = row + direction[0]
                 c = col + direction[1]
@@ -30,5 +30,3 @@ class Solution:
                     continue
                 rooms[r][c] = rooms[row][col] + 1
                 q.append([r, c])
-
-                
