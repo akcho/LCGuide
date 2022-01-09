@@ -7,26 +7,28 @@ class Solution:
         GATE = 0
         DIRECTIONS = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 
-        m = len(rooms)
-        if m == 0: return
-        n = len(rooms[0])
+        rows = len(rooms)
+        if rows == 0: return
+        cols = len(rooms[0])
         q = deque()
 
-        for row in range(m):
-            for col in range(n):
+        for row in range(rows):
+            for col in range(cols):
+                # add gate to queue
                 if rooms[row][col] == GATE:
                     q.append([row, col])
 
         while len(q) != 0:
+            # pop gate coords off
             point = q.popleft()
-            row = point[0]
-            col = point[1]
+            row = point[0]  # 1 is north, -1 is south
+            col = point[1]  # 1 is east, -1 is west
             for direction in DIRECTIONS:
                 r = row + direction[0]
                 c = col + direction[1]
-                if r < 0 or c < 0 or r >= m or c >= n or rooms[r][c] != EMPTY:
+                if r < 0 or c < 0 or r >= rows or c >= cols or rooms[r][c] != EMPTY:
                     continue
                 rooms[r][c] = rooms[row][col] + 1
                 q.append([r, c])
 
-
+                
