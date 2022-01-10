@@ -47,3 +47,4 @@ class Solution:
                             grid[row][right] = VISITED
         return num_islands
 
+print("test")
