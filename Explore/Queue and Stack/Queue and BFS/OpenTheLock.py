@@ -12,7 +12,7 @@ class Solution:
                     neighbor = (digit + direction) % 10
 
                     # only return digit as diff in combo str
-                    yield combo[:i] + str(neighbor) + combo[ i +1:]
+                    yield combo[:i] + str(neighbor) + combo[i+1:]
 
         dead = set(deadends)
         queue = deque([('0000', 0)])
