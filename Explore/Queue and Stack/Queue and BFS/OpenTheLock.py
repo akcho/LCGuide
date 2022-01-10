@@ -4,28 +4,23 @@
 class Solution:
     def openLock(self, deadends: List[str], target: str) -> int:
         def neighbors(combo):
-            # loop through each wheel
             for i in range(4):
                 digit = int(combo[i])
                 for direction in (-1, 1):
-                    # modulo if it hits 10 (eg. 0 would go back to 9 instead of -1)
-                    neighbor = (digit + direction) % 10
+                    # modulo needed for turning 9-0 or 0-9
+                    neighboring_digit = (digit + direction) % 10
+                    yield combo[:i] + str(neighboring_digit) + combo[i + 1:]
 
-                    # only return digit as diff in combo str
-                    yield combo[:i] + str(neighbor) + combo[i+1:]
+        seen = {"0000"}
+        q = deque([("0000", 0)])
 
-        dead = set(deadends)
-        queue = deque([('0000', 0)])
-        seen = {'0000'}
+        while q:
+            combo, num_turns = q.popleft()
+            if combo == target: return num_turns
+            if combo in deadends: continue
 
-        while queue:
-            combo, num_turns = queue.popleft()
-            if combo == target:
-                return num_turns
-            if combo in dead: continue
-
-            for nei in neighbors(combo):
-                if nei not in seen:
-                    seen.add(nei)
-                    queue.append((nei, num_turns + 1))
+            for neighboring_combo in neighbors(combo):
+                if neighboring_combo not in seen:
+                    seen.add(neighboring_combo)
+                    q.append([neighboring_combo, num_turns + 1])
         return -1
