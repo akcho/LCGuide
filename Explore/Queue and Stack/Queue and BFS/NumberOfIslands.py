@@ -8,7 +8,8 @@ class Solution:
 
         LAND = '1'
         WATER = '0'
-        VISITED = '-1'  # can be any number except 1
+        VISITED = '-1'
+
         num_rows = len(grid)
         num_cols = len(grid[0])
 
@@ -20,7 +21,6 @@ class Solution:
                     grid[r][c] = VISITED
                     neighbors = deque()
                     neighbors.append([r, c])
-
                     while neighbors:
                         row, col = neighbors.popleft()
                         up = row - 1
@@ -36,19 +36,14 @@ class Solution:
                         if up_in_bounds and grid[up][col] == LAND:
                             neighbors.append([up, col])
                             grid[up][col] = VISITED
-
                         if down_in_bounds and grid[down][col] == LAND:
                             neighbors.append([down, col])
                             grid[down][col] = VISITED
-
                         if left_in_bounds and grid[row][left] == LAND:
                             neighbors.append([row, left])
                             grid[row][left] = VISITED
-
                         if right_in_bounds and grid[row][right] == LAND:
                             neighbors.append([row, right])
                             grid[row][right] = VISITED
         return num_islands
-
-
 
