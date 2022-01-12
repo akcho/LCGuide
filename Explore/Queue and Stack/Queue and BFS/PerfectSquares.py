@@ -9,17 +9,17 @@ class Solution:
             perfect_squares.append(i ** 2)
             i += 1
 
-        level = 0
+        lvl = 0
         curr_lvl_nodes = {n}
         while curr_lvl_nodes:
-            level += 1
+            lvl += 1
             temp = set()
             for node in curr_lvl_nodes:
                 for ps in perfect_squares:
                     if node == ps:
-                        return level
+                        return lvl
                     if node < ps:
                         break
                     temp.add(node - ps)
             curr_lvl_nodes = temp
-        return level
+        return lvl
