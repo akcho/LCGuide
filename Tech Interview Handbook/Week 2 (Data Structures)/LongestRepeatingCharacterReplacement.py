@@ -3,10 +3,10 @@
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        # Max_length the longest subsequence without repeating chars and k changes
+        # Max_length is the longest subsequence without repeating chars and k changes
         # Max_count is the highest count of chars in the answer subsequence
         max_length = max_count = 0
-        # count keeps track of all of the chars that we are looking at in subsequence
+        # count keeps track of all of the chars that we are looking at in the subsequence
         count = defaultdict(int)
         for i in range(len(s)):
             # Add char to the count dict
