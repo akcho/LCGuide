@@ -9,12 +9,13 @@ class Solution:
         # count keeps track of all of the chars that we are looking at in the subsequence
         count = defaultdict(int)
         for i in range(len(s)):
+            c = s[i]
             # Add char to the count dict
-            count[s[i]] += 1
+            count[c] += 1
 
             # Find the new max_count. This is much like Kadane's,
             # where we only consider if the new length exceeds the max_length.
-            max_count = max(max_count, count[s[i]])
+            max_count = max(max_count, count[c])
 
             # The answer must always be max_count + k.
             if max_length < k + max_count:
