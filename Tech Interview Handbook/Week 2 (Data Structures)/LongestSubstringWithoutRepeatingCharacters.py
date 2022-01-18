@@ -4,14 +4,18 @@
 
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        seen = defaultdict(lambda: None)
-        start = 0
+        last_seen = defaultdict(lambda: None)
+        window_start = 0
         max_length = 0
 
         for i, c in enumerate(s):
-            if seen[c] is not None:
-                if seen[c] >= start:
-                    start = seen[c] + 1  # seen[c] contains index
-            max_length = max(max_length, i - start + 1)
-            seen[c] = i
+            if last_seen[c] is not None:  # we've seen c before
+
+                # if we've seen c before within curr window, set window_start
+                # to right after this repeated c's index.
+                if last_seen[c] >= window_start:
+                    window_start = last_seen[c] + 1
+            max_length = max(max_length, i - window_start + 1)
+            last_seen[c] = i
         return max_length
+
