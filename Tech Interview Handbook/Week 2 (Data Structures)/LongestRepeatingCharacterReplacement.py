@@ -7,8 +7,7 @@ class Solution:
         max_count = 0
         count = defaultdict(int)
 
-        for i in range(len(s)):
-            c = s[i]
+        for i, c in enumerate(s):
             count[c] += 1
             max_count = max(max_count, count[c])
 
