@@ -22,10 +22,10 @@ class Solution:
             atlantic_q.append((num_rows - 1, i))
 
         def bfs(q):
-            reachable = set()
+            will_flow_down = set()
             while q:
                 (row, col) = q.popleft()
-                reachable.add((row, col))
+                will_flow_down.add((row, col))
 
                 for (x, y) in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
                     new_row, new_col = row + x, col + y
@@ -34,7 +34,8 @@ class Solution:
                     if new_row < 0 or new_row >= num_rows or new_col < 0 or new_col >= num_cols:
                         continue
 
-                    if (new_row, new_col) in reachable:
+                    # skip if already added to set of flowable cells
+                    if (new_row, new_col) in will_flow_down:
                         continue
 
                     # skip if new cell is too short
@@ -42,9 +43,9 @@ class Solution:
                         continue
 
                     q.append((new_row, new_col))
-            return reachable
+            return will_flow_down
 
-        pacific_reachable = bfs(pacific_q)
-        atlantic_reachable = bfs(atlantic_q)
+        flow_to_pacific = bfs(pacific_q)
+        flow_to_atlantic = bfs(atlantic_q)
 
-        return list(pacific_reachable.intersection(atlantic_reachable))
+        return list(flow_to_pacific.intersection(flow_to_atlantic))
