@@ -6,14 +6,14 @@ class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
         matrix = heights
 
+        # remove null cases
         if not matrix or not matrix[0]:
             return []
 
         num_rows, num_cols = len(matrix), len(matrix[0])
+        pacific_q, atlantic_q = deque(), deque()
 
-        pacific_q = deque()
-        atlantic_q = deque()
-
+        # add "coasts" (edges of matrix) to their respective oceans
         for i in range(num_rows):
             pacific_q.append((i, 0))
             atlantic_q.append((i, num_cols - 1))
@@ -22,27 +22,29 @@ class Solution:
             atlantic_q.append((num_rows - 1, i))
 
         def bfs(q):
+            # will_flow_down will only contain coords that water can "flow down" from and to
             will_flow_down = set()
             while q:
                 (row, col) = q.popleft()
                 will_flow_down.add((row, col))
 
-                for (x, y) in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
-                    new_row, new_col = row + x, col + y
+                # check neighbors using BFS
+                for (r, c) in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+                    neighboring_r, neighboring_c = row + x, col + y
 
-                    # skip (continue to next loop) if out of bounds
-                    if new_row < 0 or new_row >= num_rows or new_col < 0 or new_col >= num_cols:
+                    # don't add if out of bounds
+                    if neighboring_r < 0 or neighboring_r >= num_rows or neighboring_c < 0 or neighboring_c >= num_cols:
                         continue
 
-                    # skip if already added to set of flowable cells
-                    if (new_row, new_col) in will_flow_down:
+                    # don't add if already added to set of flowable cells
+                    if (neighboring_r, neighboring_c) in will_flow_down:
                         continue
 
-                    # skip if new cell is too short
-                    if matrix[row][col] > matrix[new_row][new_col]:
+                    # don't add if new cell is too short for water to flow out from
+                    if matrix[row][col] > matrix[neighboring_r][neighboring_c]:
                         continue
 
-                    q.append((new_row, new_col))
+                    q.append((neighboring_r, neighboring_c))
             return will_flow_down
 
         flow_to_pacific = bfs(pacific_q)
