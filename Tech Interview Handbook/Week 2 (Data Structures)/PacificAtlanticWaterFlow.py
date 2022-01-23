@@ -29,11 +29,13 @@ class Solution:
                 will_flow_down.add((row, col))
 
                 # check neighbors using BFS
-                for (r, c) in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
-                    neighboring_r, neighboring_c = row + x, col + y
+                for (dir_r, dir_c) in [(1, 0), (0, 1), (-1, 0), (0, -1)]:
+                    neighboring_r, neighboring_c = row + dir_r, col + dir_c
 
                     # don't add if out of bounds
-                    if neighboring_r < 0 or neighboring_r >= num_rows or neighboring_c < 0 or neighboring_c >= num_cols:
+                    if neighboring_r < 0 or neighboring_r >= num_rows :
+                        continue
+                    if neighboring_c < 0 or neighboring_c >= num_cols:
                         continue
 
                     # don't add if already added to set of flowable cells
@@ -41,7 +43,8 @@ class Solution:
                         continue
 
                     # don't add if new cell is too short for water to flow out from
-                    if matrix[row][col] > matrix[neighboring_r][neighboring_c]:
+
+                    if matrix[neighboring_r][neighboring_c]  < matrix[row][col]:
                         continue
 
                     q.append((neighboring_r, neighboring_c))
