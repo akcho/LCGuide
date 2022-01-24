@@ -20,7 +20,8 @@ class Solution:
                 if seen != ob:
                     return False
             else:
-                stack.append(b)
+                ob = b
+                stack.append(ob)
 
         return not stack
 
