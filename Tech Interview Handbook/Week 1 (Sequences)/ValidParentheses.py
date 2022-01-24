@@ -4,14 +4,23 @@
 
 class Solution:
     def isValid(self, s: str) -> bool:
+        pairs = {")": "(", "}": "{", "]": "["}
+
         stack = []
-        mapping = {")": "(", "}": "{", "]": "["}
-        for char in s:
-            if char in mapping:
-                top_element = stack.pop() if stack else "-1"
-                if mapping[char] != top_element:
+
+        for b in s:
+            # if bracket is in pairs (ie. bracket is a cb key):
+            # closed_bracket = bracket
+            # open_bracket = pairs[closed_bracket]
+            if b in pairs:
+                cb = b
+                ob = pairs[cb]
+
+                seen = stack.pop() if stack else -1
+                if seen != ob:
                     return False
             else:
-                stack.append(char)
+                stack.append(b)
+
         return not stack
 
