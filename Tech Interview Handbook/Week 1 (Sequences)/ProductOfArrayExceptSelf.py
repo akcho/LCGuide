@@ -4,31 +4,17 @@ from typing import List
 # Space: O(1)
 class Solution:
     def productExceptSelf(self, nums: List[int]) -> List[int]:
+        a = [1] * len(nums)
 
-        # The length of the input array
-        length = len(nums)
+        # Set a[i] as the product of all elements left of i
+        for i in range(1, len(nums)):
+            a[i] = a[i - 1] * nums[i - 1]  # a[i-1] is a running product
 
-        # The answer array to be returned
-        answer = [0] * length
+        r = 1
+        # make r the product of all elements right of i.
+        # multiply r with products of left elements to get the product of all elements on either side of i
+        for i in reversed(range(len(nums))):
+            a[i] *= r
+            r *= nums[i]
 
-        # answer[i] contains the product of all the elements to the left
-        # Note: for the element at index '0', there are no elements to the left,
-        # so the answer[0] would be 1
-        answer[0] = 1
-        for i in range(1, length):
-            # answer[i - 1] already contains the product of elements to the left of 'i - 1'
-            # Simply multiplying it with nums[i - 1] would give the product of all
-            # elements to the left of index 'i'
-            answer[i] = nums[i - 1] * answer[i - 1]
-
-        # R contains the product of all the elements to the right
-        # Note: for the element at index 'length - 1', there are no elements to the right,
-        # so the R would be 1
-        R = 1
-        for i in reversed(range(length)):
-            # For the index 'i', R would contain the
-            # product of all elements to the right. We update R accordingly
-            answer[i] *= R
-            R *= nums[i]
-
-        return answer
+        return a

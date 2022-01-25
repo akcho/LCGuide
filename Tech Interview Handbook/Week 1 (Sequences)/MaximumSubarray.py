@@ -3,13 +3,17 @@ from typing import List
 
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
-        # Initialize our variables using the first element.
-        current_subarray = max_subarray = nums[0]
+        # Initialize our current and max subarrays with the first num in nums.
+        curr = max_ = nums[0]
 
-        # Start with the 2nd element since we already used the first one.
+        # Start with the second num since we already initialized with first num.
         for num in nums[1:]:
-            # If current_subarray is negative, throw it away. Otherwise, keep adding to it.
-            current_subarray = max(num, current_subarray + num)
-            max_subarray = max(max_subarray, current_subarray)
+            # curr does two things:
+            # 1. Keeps a running sum
+            # 2. Discards a negative curr_subarray if/when we reach a positive num
+            curr = max(num, curr + num)
+
+            # max_ stores the best subarray
+            max_ = max(max_subarray, current_subarray)
 
         return max_subarray
