@@ -7,8 +7,12 @@ class Solution:
         res = []
         nums.sort()
         for i in range(len(nums)):
+            # since we sorted, res should be completely filled by the time we reach the first non-zero int
             if nums[i] > 0:
                 break
+
+            # 1. i == 0 is added so we don't break from looking at nums[i-1]
+            # 2. we want to run twoSum on non-identical consecutive nums bc we don't want duplicate triplets
             if i == 0 or nums[i - 1] != nums[i]:
                 self.twoSum(nums, i, res)
         return res
