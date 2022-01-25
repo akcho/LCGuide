@@ -1,6 +1,7 @@
+# DP: Kadane's Algorithm
+# Time: O(n)
+# Space: O(1)
 from typing import List
-
-
 class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         # Initialize our current and max subarrays with the first num in nums.
