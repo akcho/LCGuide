@@ -1,4 +1,4 @@
-# default dict
+# hash map (defaultdict)
 # Time Complexity: O(NK), where N is the length of strs, and K is the maximum length of a string in strs.
 # Space Complexity: O(NK), the total information content stored in ans.
 
