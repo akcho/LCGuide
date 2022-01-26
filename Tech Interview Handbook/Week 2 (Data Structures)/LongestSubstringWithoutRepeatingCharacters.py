@@ -5,17 +5,19 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
         last_seen = defaultdict(lambda: None)
-        window_start = 0
-        max_length = 0
+        win_start = 0
+        best_win_length = 0
 
         for i, c in enumerate(s):
-            if last_seen[c] is not None:  # we've seen c before
+            # if we've seen c before:
+            if last_seen[c] is not None:
+                # if we've seen c before within our current window:
+                if last_seen[c] >= win_start:
+                    # Reset our window to start right after this repeated c's index.
+                    win_start = last_seen[c] + 1
 
-                # if we've seen c before within curr window, set window_start
-                # to right after this repeated c's index.
-                if last_seen[c] >= window_start:
-                    window_start = last_seen[c] + 1
-            max_length = max(max_length, i - window_start + 1)
+            curr_win_length = i - win_start + 1
+            best_win_length = max(best_win_length, curr_win_length)
             last_seen[c] = i
-        return max_length
+        return best_win_length
 
