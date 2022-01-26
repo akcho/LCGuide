@@ -3,17 +3,17 @@
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        window_size = 0
-        max_count = 0
-        count = defaultdict(int)
+        max_win_size = 0
+        most_chars_in_win = 0
+        win_char_count = defaultdict(int)
 
         for i, c in enumerate(s):
-            count[c] += 1
-            max_count = max(max_count, count[c])
+            win_char_count[c] += 1
+            most_chars_in_win = max(most_chars_in_win, win_char_count[c])
 
-            if k > window_size - max_count:
-                window_size += 1
+            if k > max_win_size - most_chars_in_win:
+                max_win_size += 1
             else:
-                # subtract window start's count to slide the window
-                count[s[i - window_size]] -= 1
-        return window_size
+                win_start = s[i - max_win_size]
+                win_char_count[win_start] -= 1
+        return max_win_size
