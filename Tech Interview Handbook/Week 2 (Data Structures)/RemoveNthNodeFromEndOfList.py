@@ -5,8 +5,7 @@ class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         dummy = ListNode(0)
         dummy.next = head
-        first = dummy
-        second = dummy
+        first = second = dummy
 
         '''
         Here, we separate first and second pointers by exactly n nodes. 
@@ -14,8 +13,8 @@ class Solution:
         from the end when the first pointer reaches the end of the LL.       
         '''
 
-        # move first pointer n nodes ahead of second pointer
-        for i in range(n + 1):
+        # Move first pointer n nodes ahead of second pointer.
+        for _ in range(n + 1):
             first = first.next
 
         # 1. Move first pointer to the end of the LL.
