@@ -19,8 +19,8 @@ class Solution:
 
             # Else, we move the left of our window by 1
             else:
-                win_start = s[i - best_win_length]
+                char_at_win_start = s[i - best_win_length]
                 # Decrement the count of curr window's starting char in our hash set.
                 # This is like moving the left pointer in a traditional sliding window.
-                win_char_count[win_start] -= 1
+                win_char_count[char_at_win_start] -= 1
         return best_win_length
