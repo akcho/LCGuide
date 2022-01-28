@@ -19,8 +19,7 @@ class Codec:
         data_q = deque(data_list)
         def dfs(q):
             val = q.popleft()
-            if val == "None":
-                return None
+            if val == "None": return None
             root = TreeNode(val)
             root.left = dfs(q)
             root.right = dfs(q)
