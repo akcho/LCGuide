@@ -8,7 +8,8 @@ class Solution:
 
         LAND = '1'
         WATER = '0'
-        VISITED = '-1'
+        VISITED = '-1'  # you could just use WATER instead of VISITED in our code,
+                        # but I think VISITED makes BFS easier to follow.
 
         num_rows = len(grid)
         num_cols = len(grid[0])
