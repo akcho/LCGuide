@@ -1,6 +1,6 @@
 # heap
-# time: O(n log K)
-# space: O(N+k)
+# time: O(n log k) if k < n, O(n) if n == k
+# space: O(n+k) (hashmap with <= n elements and heap with k elements)
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
