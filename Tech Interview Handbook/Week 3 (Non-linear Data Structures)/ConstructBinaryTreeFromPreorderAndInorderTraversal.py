@@ -9,8 +9,7 @@ class Solution:
 
         def helper(left, right):
             # base case: we've encountered a null node if left > right
-            if left > right:
-                return None
+            if left > right: return None
 
             nonlocal pre_idx
             root_val = preorder[pre_idx]
