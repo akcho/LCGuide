@@ -10,22 +10,22 @@ class Node(object):
         self.neighbors = neighbors
 """
 
-class Solution(object):
+
+class Solution:
     def __init__(self):
         self.copied = {}
 
-    def cloneGraph(self, node):
+    def cloneGraph(self, node: 'Node') -> 'Node':
         copied = self.copied
-        if not node:
-            return node
 
-        if node in self.copied:
-            return self.copied[node]
+        if not node: return None
+        if node in copied: return copied[node]
 
         copied[node] = Node(node.val, [])
 
         if node.neighbors:
-            copied[node].neighbors = [self.cloneGraph(neighbor) for neighbor in node.neighbors]
+            copied[node].neighbors = [self.cloneGraph(n) for n in node.neighbors]
+
         return copied[node]
 
 
