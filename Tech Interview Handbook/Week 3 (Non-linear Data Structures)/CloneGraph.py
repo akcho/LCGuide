@@ -9,8 +9,6 @@ class Node(object):
         self.val = val
         self.neighbors = neighbors
 """
-
-
 class Solution:
     def __init__(self):
         self.copied = {}
@@ -18,15 +16,15 @@ class Solution:
     def cloneGraph(self, node: 'Node') -> 'Node':
         copied = self.copied
 
-        if not node: return None
-        if node in copied: return copied[node]
-
-        copied[node] = Node(node.val, [])
-
-        if node.neighbors:
-            copied[node].neighbors = [self.cloneGraph(n) for n in node.neighbors]
-
-        return copied[node]
+        if not node:
+            return None
+        elif node in copied:
+            return copied[node]
+        else:
+            copied[node] = Node(node.val, [])
+            if node.neighbors:
+                copied[node].neighbors = [self.cloneGraph(n) for n in node.neighbors]
+            return copied[node]
 
 
 # Approach 2: Breadth First Search
