@@ -1,35 +1,35 @@
-class Solution(object):
-    def canFinish(self, numCourses, prerequisites):
-        """
-        :type numCourses: int
-        :type prerequisites: List[List[int]]
-        :rtype: bool
-        """
-        graph = [[] for _ in range(numCourses)]
-        visited = [0 for _ in range(numCourses)]
-        # create graph
-        for pair in prerequisites:
-            x, y = pair
-            graph[x].append(y)
-        # visit each node
-        for i in range(numCourses):
-            if not self.dfs(graph, visited, i):
-                return False
-        return True
+# Recursive DFS
+# time: O(num_prereqs + num_courses) == O(edges + visited) == O(|E| + |V|)
+# space: O(num_prereqs + num_courses) == O(edges + visited) == O(|E| + |V|)
 
-    def dfs(self, graph, visited, i):
-        # if ith node is marked as being visited, then a cycle is found
-        if visited[i] == -1:
-            return False
-        # if it is done visted, then do not visit again
-        if visited[i] == 1:
-            return True
-        # mark as being visited
-        visited[i] = -1
-        # visit all the neighbours
-        for j in graph[i]:
-            if not self.dfs(graph, visited, j):
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        prereq_map = {course: [] for course in range(numCourses)}
+
+        # assign key-value pairs in our prereq_map
+        for course, prereq in prerequisites:
+            prereq_map[course].append(prereq)
+
+        # visit_set = all courses along the curr DFS path
+        visit_set = set()
+
+        def dfs(course):
+            # if we already visited this course, then we hit a loop
+            if course in visit_set:
                 return False
-        # after visit all the neighbours, mark it as done visited
-        visited[i] = 1
+            # if we didn't populate prereqs in our key-value pair assignment, we're good to go
+            if prereq_map[course] == []:
+                return True
+
+            visit_set.add(course)
+            for prereq in prereq_map[course]:
+                if not dfs(prereq): return False
+
+            # This particular course has been vetted at this point. We can remove it from our to-watch list.
+            visit_set.remove(course)
+            prereq_map[course] = []
+            return True
+
+        for course in range(numCourses):
+            if not dfs(course): return False
         return True
