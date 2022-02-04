@@ -14,12 +14,15 @@ class Solution:
         visit_set = set()
 
         def dfs(course):
-            # if we already visited this course, then we hit a loop
-            if course in visit_set: return False
-            # if we didn't populate prereqs in our key-value pair assignment, we're good to go
+            # if we didn't add prereqs to this course during course-prereq mapping, we're good to go
             if prereq_map[course] == []: return True
 
+            # if we already visited this course, then we hit a loop
+            if course in visit_set: return False
+
+            # bases cases aside, let's start DFS traversal
             visit_set.add(course)
+
             for prereq in prereq_map[course]:
                 if not dfs(prereq): return False
 
