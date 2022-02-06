@@ -13,9 +13,10 @@ class Solution:
             if last_seen[c] is not None and last_seen[c] >= win_start:
                 # Reset our window to start right after this repeated c's index.
                 win_start = last_seen[c] + 1
+            last_seen[c] = i
 
             curr_win_length = i - win_start + 1
             best_win_length = max(best_win_length, curr_win_length)
-            last_seen[c] = i
+
         return best_win_length
 

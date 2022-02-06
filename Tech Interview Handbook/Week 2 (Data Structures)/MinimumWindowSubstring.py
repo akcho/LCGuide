@@ -25,9 +25,9 @@ class Solution:
 
                 left_char = s[left]
                 if left_char in chars_still_needed:
-                    if chars_still_needed[left_char] >= 0:
-                        total_chars_still_needed += 1
                     chars_still_needed[left_char] += 1
+                    if chars_still_needed[left_char] > 0:
+                        total_chars_still_needed += 1
                 left += 1
 
             right += 1
