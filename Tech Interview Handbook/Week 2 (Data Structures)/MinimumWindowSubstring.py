@@ -13,9 +13,10 @@ class Solution:
         while right < len(s):
             right_char = s[right]
             if right_char in chars_still_needed:
-                if chars_still_needed[right_char] > 0:
-                    total_chars_still_needed -= 1
                 chars_still_needed[right_char] -= 1
+                if chars_still_needed[right_char] >= 0:
+                    total_chars_still_needed -= 1
+
 
             while total_chars_still_needed == 0:
                 curr_win_length = right - left + 1
