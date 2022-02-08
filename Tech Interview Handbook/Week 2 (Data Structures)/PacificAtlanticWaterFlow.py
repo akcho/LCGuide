@@ -52,4 +52,4 @@ class Solution:
         flow_to_pacific = bfs(pacific_q)
         flow_to_atlantic = bfs(atlantic_q)
 
-        return flow_to_pacific.intersection(flow_to_atlantic)
+        return flow_to_pacific.intersection(flow_to_atlantic)  # also write as "flow_to_pacific & flow_to_atlantic"
