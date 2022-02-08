@@ -42,7 +42,7 @@ class Solution:
                     if (neighboring_r, neighboring_c) in will_flow_down:
                         continue
 
-                    # don't add if new cell is too short for water to flow out from
+                    # don't add if neighboring cell is too short for water to flow down from
                     if matrix[neighboring_r][neighboring_c]  < matrix[row][col]:
                         continue
 
