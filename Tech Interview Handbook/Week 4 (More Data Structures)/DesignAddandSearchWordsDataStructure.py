@@ -1,5 +1,5 @@
 # Trie (Prefix Tree)
-# Time: O(M) for well-defined words, where M is key length. O(N * 26^M), where N is
+# Time: O(M) for well-defined words, where M is key length. O(N * 26^M), where N is number of keys
 # Space:
 
 class TrieNode:
@@ -28,12 +28,10 @@ class WordDictionary:
 
                 if c == '.':
                     for child in curr.children.values():
-                        if dfs(i + 1, child):
-                            return True
+                        if dfs(i + 1, child): return True
                     return False
                 else:
-                    if c not in curr.children:
-                        return False
+                    if c not in curr.children: return False
                     curr = curr.children[c]
             return curr.word
 
