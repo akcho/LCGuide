@@ -43,7 +43,6 @@ class Solution:
                         continue
 
                     # don't add if new cell is too short for water to flow out from
-
                     if matrix[neighboring_r][neighboring_c]  < matrix[row][col]:
                         continue
 
@@ -53,4 +52,4 @@ class Solution:
         flow_to_pacific = bfs(pacific_q)
         flow_to_atlantic = bfs(atlantic_q)
 
-        return list(flow_to_pacific.intersection(flow_to_atlantic))
+        return flow_to_pacific.intersection(flow_to_atlantic)
