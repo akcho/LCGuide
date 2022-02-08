@@ -1,6 +1,6 @@
 # BFS
-#time: O(m*n)
-# space: O(m*n)
+#time: O(rows * cols)
+# space: O(rows * cols))
 
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
