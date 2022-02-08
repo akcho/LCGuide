@@ -1,5 +1,5 @@
 # Trie (Prefix Tree)
-# Time: O(M) for well-defined words, where M is word length. O(N * 26^M), where 
+# Time: O(M) for well-defined words, where M is word length. O(N * 26^M), where
 # Space:
 
 class TrieNode:
