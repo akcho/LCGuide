@@ -1,6 +1,5 @@
 # Trie (Prefix Tree)
-# Time: O(M) for well-defined words, where M is key length. O(N * 26^M), where N is number of keys
-# Space:
+
 
 class TrieNode:
     def __init__(self):
@@ -12,6 +11,9 @@ class WordDictionary:
     def __init__(self):
         self.root = TrieNode()
 
+
+    # Time: O(M), where M is word length.
+    # Space: O(M)
     def addWord(self, word: str) -> None:
         curr = self.root
         for c in word:
@@ -20,6 +22,9 @@ class WordDictionary:
             curr = curr.children[c]
         curr.word = True
 
+    # Time: O(M) for words without dots, where M is word length.
+    #       O(26^M) for dotted words, where M is word length, eg. ".....z"
+    # Space: O(1) for words without dots, O(M) for words with dots bc of recursion stack
     def search(self, word: str) -> bool:
         def dfs(j, root):
             curr = root
