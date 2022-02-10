@@ -1,16 +1,12 @@
 # Trie (Prefix Tree)
-
-
 class TrieNode:
     def __init__(self):
         self.children = {}
         self.word = False
 
-
 class WordDictionary:
     def __init__(self):
         self.root = TrieNode()
-
 
     # Time: O(M), where M is word length.
     # Space: O(M)
@@ -37,7 +33,7 @@ class WordDictionary:
                     return False
                 else:
                     if c not in curr.children: return False
-                    curr = curr.children[c]
+                    else: curr = curr.children[c]
             return curr.word
 
         return dfs(0, self.root)
