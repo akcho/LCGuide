@@ -18,8 +18,8 @@ class Solution:
             if row + col == n - 1:
                 anti_diag += player
 
-            for line in (row_sums[row], col_sums[col], diag, anti_diag):
-                if abs(line) == n:
+            for sum_ in (row_sums[row], col_sums[col], diag, anti_diag):
+                if abs(sum_) == n:
                     return "A" if player == 1 else "B"
 
             player *= -1
