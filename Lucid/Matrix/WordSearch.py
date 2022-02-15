@@ -12,7 +12,6 @@ class Solution:
 
             if not 0 <= r < num_rows or not 0 <= c < num_cols: return False
             if word[i] != board[r][c]: return False
-            if (r, c) in path: return False
 
             og_val = board[r][c]
             board[r][c] = VISITED
@@ -23,7 +22,7 @@ class Solution:
             board[r][c] = og_val
             return res
 
-        for row in range(num_rows):
-            for col in range(num_cols):
-                if dfs(row, col, 0): return True
+        for r in range(num_rows):
+            for c in range(num_cols):
+                if dfs(r, c, 0): return True
         return False
