@@ -19,7 +19,7 @@ class Solution(object):
                     board[r][c] = board[r + 1][c] = board[r + 2][c] = -abs(board[r][c])
                     todo = True
 
-        # update board for gravity
+        # update board for gravity using sliding window
         for c in range(num_cols):
             wr = num_rows - 1
             # add unmodified cells whhile keeping track of when the 0s should start
