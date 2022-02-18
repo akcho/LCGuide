@@ -1,28 +1,25 @@
 class UltimateTicTacToe:
     def __init__(self):
-        self.rows = [TicTacToe(3)] * 3
-        self.cols = [TicTacToe(3)] * 3
+        self.row_sums = [TicTacToe()] * 3
+        self.col_sums = [TicTacToe()] * 3
+        self.squares = defaultdict(TictacToe)
+
         self.curr_board = (-1,-1)
 
     def move(self, row, col, player):
-        
-
-        if self.curr_board == (-1,-1):
-            self.curr_board = (row, col)
-
-        self.curr_board.move(row, col, player)
+        self.squares[(row//3,col//3)].move(row//3,col//3 )
 
 
 
 # Almost identical to FindWinner. Just in a class modeling format
 class TicTacToe:
 
-    def __init__(self, n: int):
-        self.n = n
+    def __init__(self):
         self.row_sums = [0] * 3
         self.col_sums = [0] * 3
         self.diag = 0
         self.anti_diag = 0
+        self.winner = 0
 
     # time: O(1)
     # space: O(n) <- all kept in init
@@ -41,6 +38,7 @@ class TicTacToe:
 
         for sum_ in (self.row_sums[row], self.col_sums[col], self.diag, self.anti_diag):
             if abs(sum_) == n:
+                self.winner = player
                 return player
         return 0
 
