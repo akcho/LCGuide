@@ -18,7 +18,7 @@ class Solution:
                 cache[(r, c)] = 0
                 if matrix[r][c] == '1':
                     cache[(r, c)] = 1 + min(down, right, diag)
-            return cache[r][c]
+            return cache[(r, c)]
 
         helper(0, 0)
-        max(cache.values()) ** 2
+        return max(cache.values()) ** 2
