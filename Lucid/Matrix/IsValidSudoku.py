@@ -1,7 +1,6 @@
 # hash map to track scores for row, col, square
 # time: O(1)
 # space: O(m * n)
-
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
         cols = defaultdict(set)

@@ -4,8 +4,7 @@
 class Solution:
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         def LCA(root):
-            if not root or (root in (p, q)):
-                return root
+            if not root or root in (p, q): return root  # base case
             left = LCA(root.left)
             right = LCA(root.right)
             if left and right:

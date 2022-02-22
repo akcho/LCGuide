@@ -1,4 +1,4 @@
-# sliding window (wr is a write row)
+# two pointers (wr is a write row)
 # time: O((R * C)^2), we need O(R*C) to scan the board and might need to crush 3 every time
 # space: O(1), we edit the board in place
 
@@ -19,10 +19,10 @@ class Solution(object):
                     board[r][c] = board[r + 1][c] = board[r + 2][c] = -abs(board[r][c])
                     todo = True
 
-        # update board for gravity using sliding window
+        # update board for gravity
         for c in range(num_cols):
             wr = num_rows - 1
-            # add unmodified cells whhile keeping track of when the 0s should start
+            # add unmodified cells while keeping track of when the 0s should start
             for r in reversed(range(num_rows)):
                 if board[r][c] > 0:
                     board[wr][c] = board[r][c]
