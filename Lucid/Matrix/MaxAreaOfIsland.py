@@ -6,17 +6,14 @@ class Solution:
     def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
         LAND = 1
         WATER = 0
+        VISITED = -1
         num_rows, num_cols = len(grid), len(grid[0])
-        visit = set()
 
         def dfs(r, c):
-            if (not 0 <= r < num_rows or
-                    not 0 <= c < num_cols or
-                    grid[r][c] == WATER or
-                    (r, c) in visit):
-                return 0
+            if not 0 <= r < num_rows or not 0 <= c < num_cols: return 0
+            if grid[r][c] != LAND: return 0
 
-            visit.add((r, c))
+            grid[r][c] = VISITED
             return (1 + dfs(r + 1, c) +
                     dfs(r - 1, c) +
                     dfs(r, c + 1) +

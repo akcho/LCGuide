@@ -6,17 +6,16 @@ class Solution:
     def snakesAndLadders(self, board: List[List[int]]) -> int:
         length = len(board)
 
+        # rearrange weird-ass board
         dir = 1
         a = []
-        n = len(board)
-
-        # reorder the board plotted in Boustrophedon style (gross)
-        for i in range(n - 1, -1, -1):
+        for i in reversed(range(length)):
             if dir > 0:
                 a.append(board[i])
             else:
                 a.append(board[i][::-1])
             dir *= -1
+
         board = a
 
         def int_to_pos(square):
