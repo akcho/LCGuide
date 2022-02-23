@@ -10,22 +10,6 @@ class Solution:
         self.board = board
         self.solve()
 
-    def find_unassigned(self):
-        for r in range(9):
-            for c in range(9):
-                if self.board[r][c] == '.': return r, c
-        return -1, -1
-
-    def get_range(self, x):
-        x -= x % 3
-        return range(x, x + 3)
-
-    def is_safe(self, r, c, num):
-        row_safe = all(self.board[r][i] != num for i in range(9))
-        col_safe = all(self.board[i][c] != num for i in range(9))
-        square_safe = all(self.board[i][j] != num for i in self.get_range(r) for j in self.get_range(c))
-        return row_safe and col_safe and square_safe
-
     def solve(self):
         r, c = self.find_unassigned()
         if (r, c) == (-1, -1): return True
@@ -37,3 +21,21 @@ class Solution:
                     return True
                 else:
                     self.board[r][c] = '.'
+
+    def find_unassigned(self):
+        for r in range(9):
+            for c in range(9):
+                if self.board[r][c] == '.': return r, c
+        return -1, -1
+
+    def is_safe(self, r, c, num):
+        row_safe = all(self.board[r][i] != num for i in range(9))
+        col_safe = all(self.board[i][c] != num for i in range(9))
+        square_safe = all(self.board[i][j] != num for i in self.get_range(r) for j in self.get_range(c))
+        return row_safe and col_safe and square_safe
+
+    def get_range(self, x):
+        x -= x % 3
+        return range(x, x + 3)
+
+
