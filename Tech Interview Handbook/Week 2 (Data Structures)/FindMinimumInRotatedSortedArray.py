@@ -1,3 +1,7 @@
+# binary search
+# time: O(log n)
+# space: O(1)
+
 class Solution(object):
     def findMin(self, nums):
         """
