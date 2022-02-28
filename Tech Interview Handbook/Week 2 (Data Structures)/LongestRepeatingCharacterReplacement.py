@@ -4,7 +4,7 @@
 
 class Solution:
     def characterReplacement(self, s: str, k: int) -> int:
-        best_win_length = 0
+        win_length = 0
         most_chars_in_win = 0
         win_char_count = defaultdict(int)
 
@@ -13,14 +13,14 @@ class Solution:
             most_chars_in_win = max(most_chars_in_win, win_char_count[c])
 
             # If we can switch more chars even after increasing curr window:
-            if k > best_win_length - most_chars_in_win:
+            if k > win_length - most_chars_in_win:
                 # Increment curr window length (this is our officially our best so far)
-                best_win_length += 1
+                win_length += 1
 
             # Else, we move the left of our window by 1
             else:
-                char_at_win_start = s[i - best_win_length]
+                char_at_win_start = s[i - win_length]
                 # Decrement the count of curr window's starting char in our hash set.
                 # This is like moving the left pointer in a traditional sliding window.
                 win_char_count[char_at_win_start] -= 1
-        return best_win_length
+        return win_length
