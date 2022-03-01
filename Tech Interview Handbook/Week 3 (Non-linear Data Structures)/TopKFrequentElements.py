@@ -1,17 +1,18 @@
-# heap
-# time: O(n log k) if k < n, O(n) if n == k
-# space: O(n+k) (hashmap with <= n elements and heap with k elements)
+# bucket sort
+# time: O(n) -> O(n) to populate array, O(n) to go through array
+# space: O(n) -> O(n) for array, O(n) for counter
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        # O(1) time
-        if k == len(nums):
-            return nums
+        freq = [[] for i in range(len(nums) + 1)]
 
-        # 1. build hash map : character and how often it appears
-        # O(N) time
         count = Counter(nums)
-        # 2-3. build heap of top k frequent elements and
-        # convert it into an output array
-        # O(N log k) time
-        return heapq.nlargest(k, count.keys(), key=count.get)
+
+        for n, c in count.items():
+            freq[c].append(n)
+
+        res = []
+        for i in reversed(range(len(freq))):
+            for n in freq[i]:
+                res.append(n)
+                if len(res) == k: return res
