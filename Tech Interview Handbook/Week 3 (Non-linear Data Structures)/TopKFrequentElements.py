@@ -8,11 +8,11 @@ class Solution:
 
         count = Counter(nums)
 
-        for n, c in count.items():
-            freq[c].append(n)
+        for val, count in count.items():
+            freq[count].append(val)
 
         res = []
         for i in reversed(range(len(freq))):
-            for n in freq[i]:
-                res.append(n)
+            for val in freq[i]:
+                res.append(val)
                 if len(res) == k: return res
