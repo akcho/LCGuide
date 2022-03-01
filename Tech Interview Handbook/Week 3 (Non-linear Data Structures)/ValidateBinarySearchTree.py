@@ -6,7 +6,7 @@ class Solution:
         def validate(node, low, high):
             # Empty trees are still BSTs
             if not node: return True
-            if node.val <= low or node.val >= high: return False
+            if not low < node.val < high: return False
 
             validate_right = validate(node.right, node.val, high)
             validate_left = validate(node.left, low, node.val)
