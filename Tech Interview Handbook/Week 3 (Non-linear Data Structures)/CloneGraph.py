@@ -1,14 +1,27 @@
-# Approach 1: Depth First Search
+# Approach 1: Neetcode's DFS
+# time: O(n)
+# space:O(n+m)
+class Solution:
+    def cloneGraph(self, node: 'Node') -> 'Node':
+        old_to_new = {}
+
+        def dfs(node):
+            if node in old_to_new:
+                return old_to_new[node]
+
+            copy = Node(node.val)
+            old_to_new[node] = copy
+            for nei in node.neighbors:
+                copy.neighbors.append(dfs(nei))
+            return copy
+
+        return dfs(node) if node else None
+
+
+# Approach 2: Depth First Search
 # space: O(n+m)
 # time: O(n)
 
-"""
-# Definition for a Node.
-class Node(object):
-    def __init__(self, val, neighbors):
-        self.val = val
-        self.neighbors = neighbors
-"""
 class Solution:
     def __init__(self):
         self.copied = {}
@@ -27,7 +40,7 @@ class Solution:
             return copied[node]
 
 
-# Approach 2: Breadth First Search
+# Approach 3: Breadth First Search
 # space: O(n+m)
 # time: O(n)
 

@@ -4,12 +4,10 @@
 
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        freq = [[] for i in range(len(nums) + 1)]
-
+        freq = [[] for _ in range(len(nums) + 1)]
         count = Counter(nums)
 
-        for val, count in count.items():
-            freq[count].append(val)
+        for val, count in count.items(): freq[count].append(val)
 
         res = []
         for i in reversed(range(len(freq))):
