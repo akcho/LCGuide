@@ -4,7 +4,7 @@
 
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        prereq_map = {course: [] for course in range(numCourses)}
+        prereq_map = defaultdict(list)
 
         # assign key-value pairs in our prereq_map
         for course, prereq in prerequisites:

@@ -7,7 +7,7 @@ class Codec:
         def dfs(root):
             if not root:
                 output.append("None,")
-                return None
+                return
             output.append(str(root.val) + ",")
             dfs(root.left)
             dfs(root.right)
